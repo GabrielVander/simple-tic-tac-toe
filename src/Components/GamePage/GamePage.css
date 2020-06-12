@@ -1,0 +1,13 @@
+.gamePage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.tic-tac-toe-row {
+    min-height: 50vh;
+}
+
+.tic-tac-toe-col {
+    max-width: 50vw;
+}
