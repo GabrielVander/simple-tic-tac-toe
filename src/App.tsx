@@ -4,9 +4,9 @@ import GamePage from "./Components/GamePage/GamePage";
 
 function App() {
   return (
-    <div className="App">
-        <GamePage/>
-    </div>
+      <div className="App">
+          <GamePage/>
+      </div>
   );
 }
 
