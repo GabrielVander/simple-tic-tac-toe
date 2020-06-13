@@ -8,6 +8,7 @@ interface TicTacToeGame {
     gameStatus: GameStatus
 
     makeMove(x: number, y: number): void
+    restart(): void
 }
 
 export default TicTacToeGame;

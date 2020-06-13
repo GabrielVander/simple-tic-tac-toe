@@ -6,6 +6,7 @@ import './TicTacToe.css';
 import {inject, observer} from "mobx-react"
 import TicTacToeGame from "../../Models/Game/TicTacToeGame";
 import GameStatus from "../../Models/Game/GameStatus";
+import Button from "react-bootstrap/Button";
 
 interface Props {
     TicTacToeGame?: TicTacToeGame
@@ -47,6 +48,11 @@ class TicTacToe extends React.Component<Props> {
                         ))}
                     </Row>
                 ))}
+                {game?.gameStatus !== GameStatus.ON_GOING &&
+                    <Row className='justify-content-center'>
+                        <Button variant='primary' onClick={() => game?.restart()} >Rematch</Button>
+                    </Row>
+                }
             </Container>
         );
     }

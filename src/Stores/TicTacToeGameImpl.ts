@@ -5,24 +5,26 @@ import {action, computed, observable} from "mobx"
 import PlayerImpl from "../Models/Player/PlayerImpl";
 import GameStatus from "../Models/Game/GameStatus";
 
+const EMPTY_BOARD = [
+    [
+        PlayerProps.EMPTY,
+        PlayerProps.EMPTY,
+        PlayerProps.EMPTY,
+    ],
+    [
+        PlayerProps.EMPTY,
+        PlayerProps.EMPTY,
+        PlayerProps.EMPTY,
+    ],
+    [
+        PlayerProps.EMPTY,
+        PlayerProps.EMPTY,
+        PlayerProps.EMPTY,
+    ],
+];
+
 class TicTacToeGameImpl implements TicTacToeGame {
-    @observable private _board = [
-        [
-            PlayerProps.EMPTY,
-            PlayerProps.EMPTY,
-            PlayerProps.EMPTY,
-        ],
-        [
-            PlayerProps.EMPTY,
-            PlayerProps.EMPTY,
-            PlayerProps.EMPTY,
-        ],
-        [
-            PlayerProps.EMPTY,
-            PlayerProps.EMPTY,
-            PlayerProps.EMPTY,
-        ],
-    ];
+    @observable private _board = EMPTY_BOARD;
 
     @observable private _currentPlayer = this.player1;
 
@@ -45,6 +47,11 @@ class TicTacToeGameImpl implements TicTacToeGame {
             }
             this.nextPlayer();
         }
+    }
+
+    @action restart(): void {
+        this._board = EMPTY_BOARD;
+        this._gameStatus = GameStatus.ON_GOING;
     }
 
     @computed get board(): Array<Array<PlayerProps>> {
