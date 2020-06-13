@@ -32,16 +32,19 @@ class TicTacToeGameImpl implements TicTacToeGame {
 
     private _player2= new PlayerImpl('Player 2', PlayerProps.O);
 
-    @action makeMove(x: number, y: number): boolean {
+    @action makeMove(x: number, y: number): void {
         if(this._gameStatus === GameStatus.ON_GOING && this._board[y][x] === PlayerProps.EMPTY){
             this._board[y][x] = this.currentPlayer.prop;
             if(this.checkWin(x, y)) {
                 this._gameStatus = GameStatus.PLAYER_WON;
-                return true;
+                return;
+            }
+            if(this.checkDraw()){
+                this._gameStatus = GameStatus.DRAW;
+                return;
             }
             this.nextPlayer();
         }
-        return false;
     }
 
     @computed get board(): Array<Array<PlayerProps>> {
@@ -56,7 +59,7 @@ class TicTacToeGameImpl implements TicTacToeGame {
         return this._currentPlayer;
     }
 
-    get player1(): Player {
+    private get player1(): Player {
         return this._player1;
     }
 
@@ -88,6 +91,10 @@ class TicTacToeGameImpl implements TicTacToeGame {
 
     private checkMainDiag() {
         return this._board.every((row, index) => row[index] === this._currentPlayer.prop);
+    }
+
+    private checkDraw(): boolean {
+        return this._board.flat(2).findIndex((prop) => prop === PlayerProps.EMPTY) === -1;
     }
 }
 

@@ -7,7 +7,7 @@ interface TicTacToeGame {
     currentPlayer: Player
     gameStatus: GameStatus
 
-    makeMove(x: number, y: number): boolean
+    makeMove(x: number, y: number): void
 }
 
 export default TicTacToeGame;

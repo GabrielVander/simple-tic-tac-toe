@@ -22,9 +22,13 @@ class TicTacToe extends React.Component<Props> {
                     ? <h2 className='text-center'>
                         Current turn: {game?.currentPlayer.name}
                     </h2>
-                    : <h1 className='text-center'>
-                        GAME OVER<br/>{game?.currentPlayer.name} won!
-                    </h1>
+                    : game?.gameStatus === GameStatus.PLAYER_WON
+                        ? <h1 className='text-center'>
+                            GAME OVER<br/>{game?.currentPlayer.name} won!
+                        </h1>
+                        : <h1 className='text-center'>
+                            GAME OVER<br/>It's a draw!
+                        </h1>
                 }
 
                 {game?.board.map((row, rowIndex) => (
